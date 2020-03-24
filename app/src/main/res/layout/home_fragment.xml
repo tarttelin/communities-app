@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="androidx.lifecycle.LiveData"/>
+        <import type="com.pyruby.query.CustomerQuery.Customer"/>
+        <import type="com.pyruby.communities.api.QueryState"/>
+        <import type="com.pyruby.communities.api.QueryState.Success"/>
+        <import type="com.pyruby.communities.api.QueryState.Failure"/>
+        <variable name="customer" type="LiveData&lt;QueryState&lt;Customer&gt;&gt;"/>
+        <variable name="name" type="LiveData&lt;String&gt;"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".ui.main.MainFragment">
+        <Button
+                android:text="@string/load_customer_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/load_customer" app:layout_constraintStart_toEndOf="@+id/message"
+                android:layout_marginStart="16dp" style="@android:style/Widget.Material.Button.Small"
+                app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"/>
+        <TextView
+                android:text="@{name}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/message" tools:text="Show phone customer"
+                app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="40dp"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
+                app:layout_constraintEnd_toStartOf="@+id/load_customer"/>
+        <TextView
+                android:text="@string/customer_info_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/customer_info" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/load_customer" android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp" app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="16dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

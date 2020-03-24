@@ -1,0 +1,11 @@
+query CustomerQuery($primary: Boolean!) {
+    customer {
+        name {
+            firstName
+        }
+        msisdns(primary: $primary) {
+            duration
+            value
+        }
+    }
+}
