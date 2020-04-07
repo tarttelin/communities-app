@@ -4,7 +4,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <import type="androidx.lifecycle.LiveData"/>
-        <import type="com.pyruby.query.CustomerQuery.Customer"/>
+        <import type="com.pyruby.fragment.Community"/>
         <import type="com.pyruby.communities.api.QueryState"/>
         <import type="com.pyruby.communities.api.QueryState.Loading"/>
         <import type="com.pyruby.communities.api.QueryState.Success"/>
@@ -15,8 +15,10 @@
         <variable name="viewmodel" type="com.pyruby.communities.ui.main.MainViewModel"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/splash"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:context=".splash.SplashFragment">
 
         <TextView
                 android:text="@string/splash_title_text"

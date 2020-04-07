@@ -1,28 +1,31 @@
-package com.pyruby.communities.ui
+package com.pyruby.communities.framework
 
 import android.view.View
 import androidx.databinding.BindingAdapter
 import com.pyruby.communities.api.QueryState
+import kotlinx.android.synthetic.main.splash_fragment.view.*
 
 object BindingAdapter {
     @JvmStatic
-    @BindingAdapter("visibleLoading")
+    @BindingAdapter("showLoading")
     fun showLoading(view: View, queryState: QueryState<Any>) {
-        println("Show loader component: ${queryState is QueryState.Loading}")
         view.visibility = if (queryState is QueryState.Loading) View.VISIBLE else View.GONE
     }
 
     @JvmStatic
-    @BindingAdapter("visibleError")
+    @BindingAdapter("showError")
     fun showError(view: View, queryState: QueryState<Any>) {
-        println("Show error component: ${queryState is QueryState.Failure}")
-        view.visibility = if (queryState is QueryState.Failure) View.VISIBLE else View.GONE
+        if (queryState is QueryState.Failure) {
+            view.visibility = View.VISIBLE
+            view.splash_error_text.text = queryState.cause
+        } else {
+            view.visibility = View.GONE
+        }
     }
 
     @JvmStatic
-    @BindingAdapter("visibleSuccess")
+    @BindingAdapter("showSuccess")
     fun showSuccess(view: View, queryState: QueryState<Any>) {
-
         view.visibility = if (queryState is QueryState.Success) View.VISIBLE else View.GONE
     }
 }

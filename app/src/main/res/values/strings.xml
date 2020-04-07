@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">PhoneApp</string>
+    <string name="app_name">Communities</string>
     <string name="phoneOverview">Phone Overview</string>
     <string name="load_customer_button">Load</string>
     <string name="customer_info_text">Customer info text will go here</string>
     <string name="splash_title_text">Communities</string>
     <string name="splash_icon">Communities Icon</string>
-
+    <string name="save_thing_button">Save</string>
 </resources>

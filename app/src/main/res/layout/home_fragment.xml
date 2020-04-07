@@ -5,18 +5,18 @@
         xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="androidx.lifecycle.LiveData"/>
-        <import type="com.pyruby.query.CustomerQuery.Customer"/>
+        <import type="com.pyruby.fragment.Community"/>
         <import type="com.pyruby.communities.api.QueryState"/>
         <import type="com.pyruby.communities.api.QueryState.Success"/>
         <import type="com.pyruby.communities.api.QueryState.Failure"/>
-        <variable name="customer" type="LiveData&lt;QueryState&lt;Customer&gt;&gt;"/>
-        <variable name="name" type="LiveData&lt;String&gt;"/>
+        <variable name="viewmodel" type="com.pyruby.communities.home.CommunityViewModel"/>
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/main"
+            android:id="@+id/home"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:context=".ui.main.MainFragment">
+            android:layout_height="match_parent"
+            tools:context=".home.HomeFragment">
         <Button
                 android:text="@string/load_customer_button"
                 android:layout_width="wrap_content"
@@ -26,7 +26,7 @@
                 app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="24dp"
                 app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"/>
         <TextView
-                android:text="@{name}"
+                android:text="@{viewmodel.communityQuery.value.name}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/message" tools:text="Show phone customer"
@@ -35,12 +35,27 @@
                 app:layout_constraintEnd_toStartOf="@+id/load_customer"/>
         <TextView
                 android:text="@string/customer_info_text"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/customer_info" app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="16dp"
                 app:layout_constraintTop_toBottomOf="@+id/load_customer" android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp" app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="16dp"/>
+                android:layout_marginEnd="16dp"
+        />
+        <fragment
+                android:name="com.pyruby.communities.thing.ThingListFragment"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/customer_info"
+                tools:layout_editor_absoluteX="0dp" app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="16dp" android:id="@+id/fragment"/>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true" app:srcCompat="@android:drawable/ic_input_add"
+                android:id="@+id/addNewThingButton" app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="8dp" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp" android:backgroundTint="#673AB7"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

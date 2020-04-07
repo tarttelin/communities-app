@@ -1,0 +1,65 @@
+query CommunityQuery {
+    community {
+        ...Community
+    }
+}
+
+mutation AddThingMutation($name: String!, $quantity: String!, $category: Category!) {
+    Member: addThing(request: {name: $name, category: $category,  quantity: $quantity}) {
+        ...Member
+    }
+}
+
+mutation DeleteThingMutation($id: String!) {
+    removeThing(request: {id: $id}) {
+        ...Member
+    }
+}
+
+fragment Community on Community {
+    name
+    households {
+        edges {
+            node {
+                ...Household
+            }
+        }
+    }
+}
+
+fragment Household on Household {
+    address {
+        nameOrNumber
+        postcode
+    }
+    id
+    members {
+        edges {
+            node {
+                ...Member
+            }
+        }
+    }
+}
+
+fragment Member on Member {
+    id
+    name {
+        preferredName
+    }
+    userId
+    things {
+        edges {
+            node {
+                ...Thing
+            }
+        }
+    }
+}
+
+fragment Thing on Thing {
+    id
+    category
+    name
+    quantity
+}

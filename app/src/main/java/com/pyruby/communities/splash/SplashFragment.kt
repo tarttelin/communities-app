@@ -19,7 +19,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class SplashFragment : Fragment() {
 
-    private val vmModel: MainViewModel by viewModel()
+    private val vmModel: CommunityViewModel by viewModel()
     private lateinit var binding: SplashFragmentBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -32,17 +32,11 @@ class SplashFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        vmModel.customer.observe(viewLifecycleOwner, Observer {
-            if (it is QueryState.Success) {
+        vmModel.communityQuery.observe(viewLifecycleOwner, Observer {
+            if (it is QueryState.Success<*>) {
                 findNavController().navigate(actionSplashFragmentCommunityLoaded())
-            } else if (it is QueryState.Failure) {
-                println("Failure, show error text")
-//                binding.splashErrorText.visibility = View.VISIBLE
-                vmModel.errorMessage.value = it.cause
             }
-
         })
-        vmModel.getCustomer(false)
+        vmModel.loadCommunity()
     }
 }

@@ -8,5 +8,9 @@
         <action android:id="@+id/action_splashFragment_community_loaded" app:destination="@id/homeFragment"/>
     </fragment>
     <fragment android:id="@+id/homeFragment" android:name="com.pyruby.communities.home.HomeFragment"
-              android:label="HomeFragment"/>
+              android:label="HomeFragment">
+        <action android:id="@+id/action_homeFragment_to_addThingFragment" app:destination="@id/addThingFragment"/>
+    </fragment>
+    <fragment android:id="@+id/addThingFragment" android:name="com.pyruby.communities.thing.AddThingFragment"
+              android:label="AddThingFragment"/>
 </navigation>
